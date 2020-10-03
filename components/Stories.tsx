@@ -1,18 +1,18 @@
 import { IoIosSnow, IoIosHeart, IoIosApps } from 'react-icons/io';
 
-const stories = [
-  {
-    id: 1,
-    title: 'Create "Pengen Kuliah"',
-    picture: '',
-    description: `2020 adalah awal cerita`,
-  },
-  {
-    id: 1,
-    title: 'Start to Work in PT Mavila Solusi Indonesia',
-    picture: '',
-  },
-];
+// const stories = [
+//   {
+//     id: 1,
+//     title: 'Create "Pengen Kuliah"',
+//     picture: '',
+//     description: `2020 adalah awal cerita`,
+//   },
+//   {
+//     id: 1,
+//     title: 'Start to Work in PT Mavila Solusi Indonesia',
+//     picture: '',
+//   },
+// ];
 
 export default function Stories() {
   return (

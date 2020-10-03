@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Nav from '../components/Nav';
 import { withRouter } from 'next/router';
 import { IoLogoWhatsapp, IoLogoInstagram } from 'react-icons/io';
-import { route } from 'next/dist/next-server/server/router';
 
 function SectionBanner({ router }: any) {
   return (
