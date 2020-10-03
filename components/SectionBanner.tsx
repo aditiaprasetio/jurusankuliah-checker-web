@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Nav from '../components/Nav';
 import { withRouter } from 'next/router';
 import { IoLogoWhatsapp, IoLogoInstagram } from 'react-icons/io';
+import { route } from 'next/dist/next-server/server/router';
 
 function SectionBanner({ router }: any) {
   return (
@@ -89,11 +90,16 @@ function SectionBanner({ router }: any) {
           src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
           alt=""
         /> */}
-        <img
-          className="h-0 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-          src="/assets/img/me-1.jpg"
-          alt=""
-        />
+        {router.pathname === '/' ? (
+          <img
+            className="h-0 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+            src="/assets/img/me-1.jpg"
+            alt=""
+          />
+        ) : (
+          <div className="bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900 h-0 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"></div>
+          // // <div className="bg-gradient-to-r from-gray-500 via-gray-700 to-gray-900 h-0 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"></div>
+        )}
       </div>
     </div>
   );
