@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import React, { ReactNode } from 'react';
+import Head from 'next/head';
+import SectionBanner from './SectionBanner';
 
 type Props = {
-  children?: ReactNode
-  title?: string
-}
+  children?: ReactNode;
+  title?: string;
+};
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
   <div>
@@ -15,27 +15,15 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
-      </nav>
+      <SectionBanner />
     </header>
+
     {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
+
+    <footer className="w-full text-center text-gray-500 text-sm p-3">
+      <span>Copyright @ 2020 - Created by Me</span>
     </footer>
   </div>
-)
+);
 
-export default Layout
+export default Layout;
