@@ -3,6 +3,13 @@ import Nav from '../components/Nav';
 import { withRouter } from 'next/router';
 import { IoLogoWhatsapp, IoLogoInstagram } from 'react-icons/io';
 
+const listPage = [
+  {
+    pathname: '/contribution',
+    title: 'My Contributions',
+  },
+];
+
 function SectionBanner({ router }: any) {
   return (
     <div className="relative bg-white overflow-hidden">
@@ -40,10 +47,21 @@ function SectionBanner({ router }: any) {
                   <span className="text-blue-600"> Aditia Prasetio</span>
                 </h2>
               ) : (
-                <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+                <h2 className="text-3xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-4xl sm:leading-none md:text-5xl">
+                  {/* <Link href="/">
+                    <a className="inline-block">
+                      <IoMdArrowBack size={40} />
+                    </a>
+                  </Link>{' '} */}
                   All
                   <br className="xl:hidden" />
-                  <span className="text-blue-600"> My Projects</span>
+                  <span className="text-blue-600">
+                    {' '}
+                    {
+                      listPage.find((item) => item.pathname === router.pathname)
+                        ?.title
+                    }
+                  </span>
                 </h2>
               )}
 

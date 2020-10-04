@@ -1,7 +1,5 @@
-import { GetStaticProps } from 'next';
+// import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import { User } from '../../interfaces';
-import { sampleUserData } from '../../utils/sample-data';
 import Layout from '../../components/Layout';
 import { IoMdCheckmarkCircleOutline, IoMdStopwatch } from 'react-icons/io';
 
@@ -10,7 +8,7 @@ const runningContributions = [
     id: 1,
     title: 'Pengen Kuliah',
     description: `Pengen Kuliah adalah wadah bagi para pejuang kuliah yang bimbang tentang jurusan, informasi, kelulusan, latihan, dan masih banyak yang lain.`,
-    picture: '/assets/project/pengenkuliah.png',
+    picture: '/assets/project/pengenkuliah-new.png',
     url: 'https://pengenkuliah.com',
   },
   {
@@ -72,18 +70,20 @@ const ContributionIndex = () => (
       <div className="flex flex-row flex-wrap">
         {runningContributions.map((project: any, index: number) => (
           <Link key={'running-' + index} href={project.url}>
-            <div key={index} className="lg:w-1/2 md:w-1/2 sm:w-full my-3 p-3">
-              <div className="p-3 flex flex-row flex-wrap border rounded-md">
-                <img
-                  className="lg:w-1/4 md:w-1/2 sm:w-full"
-                  src={project.picture}
-                />
-                <div className="lg:w-3/4 md:w-1/2 sm:w-full p-4">
-                  <h2 className="font-bold">{project.title}</h2>
-                  <p>{project.description}</p>
+            <a key={index} className="lg:w-1/2 md:w-1/2 sm:w-full my-3 p-3">
+              <div>
+                <div className="p-3 flex flex-row flex-wrap border rounded-md hover:bg-gray-200">
+                  <img
+                    className="lg:w-1/4 md:w-1/2 sm:w-full"
+                    src={project.picture}
+                  />
+                  <div className="lg:w-3/4 md:w-1/2 sm:w-full p-4">
+                    <h2 className="font-bold">{project.title}</h2>
+                    <p>{project.description}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </Link>
         ))}
       </div>
@@ -98,24 +98,26 @@ const ContributionIndex = () => (
       <div className="flex flex-col">
         {doneContributions.map((project: any, index: number) => (
           <Link key={'done-' + index} href={project.url}>
-            <div className="my-3 p-3">
-              <div className="p-3 flex flex-row flex-wrap border rounded-md">
-                <img
-                  className="lg:w-1/4 md:w-1/2 sm:w-full"
-                  src={project.picture}
-                />
-                <div className="lg:w-3/4 md:w-1/2 sm:w-full p-4">
-                  <h2 className="font-bold py-2">
-                    <span className="bg-blue-600 px-3 py-2 rounded-md text-white mr-2 text-center">
-                      {index + 1}
-                    </span>
+            <a>
+              <div className="my-3 p-3">
+                <div className="p-3 flex flex-row flex-wrap border rounded-md hover:bg-gray-200">
+                  <img
+                    className="lg:w-1/4 md:w-1/2 sm:w-full"
+                    src={project.picture}
+                  />
+                  <div className="lg:w-3/4 md:w-1/2 sm:w-full p-4">
+                    <h2 className="font-bold py-2">
+                      <span className="bg-blue-600 px-3 py-2 rounded-md text-white mr-2 text-center">
+                        {index + 1}
+                      </span>
 
-                    {project.title}
-                  </h2>
-                  <p>{project.description}</p>
+                      {project.title}
+                    </h2>
+                    <p>{project.description}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </Link>
         ))}
       </div>
@@ -123,12 +125,12 @@ const ContributionIndex = () => (
   </Layout>
 );
 
-export const getStaticProps: GetStaticProps = async () => {
-  // Example for including static props in a Next.js function component page.
-  // Don't forget to include the respective types for any props passed into
-  // the component.
-  const items: User[] = sampleUserData;
-  return { props: { items } };
-};
+// export const getStaticProps: GetStaticProps = async () => {
+//   // Example for including static props in a Next.js function component page.
+//   // Don't forget to include the respective types for any props passed into
+//   // the component.
+//   const title: string = 'All My Contributions';
+//   return { props: { title } };
+// };
 
 export default ContributionIndex;

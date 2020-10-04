@@ -15,7 +15,7 @@ export default function Nav() {
               <a href="/" aria-label="Home">
                 <img
                   className="h-8 w-auto sm:h-10"
-                  src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
+                  src="assets/logo.png"
                   alt="Logo"
                 />
               </a>
