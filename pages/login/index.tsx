@@ -65,6 +65,10 @@ const Auth = (props: IAuthProps) => {
             Untuk memulai, silakan login terlebih dahulu
           </h2>
           <div className="py-3">
+            <svg
+              className="animate-spin h-5 w-5 mr-3 ..."
+              viewBox="0 0 24 24"
+            ></svg>
             <GoogleLogin
               clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}
               buttonText="Masuk dengan Google"

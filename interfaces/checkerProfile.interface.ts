@@ -4,9 +4,12 @@ export enum ECurrentProfileStatus {
   PEJUANG_KULIAH = 'PEJUANG_KULIAH',
 }
 
-export interface ICheckerProfile {
+export interface ICheckerProfileData {
+  id: string;
   account_id: string;
   current_status: string;
-  univdept_id: string;
-  want_univdept_id: string;
+  department_id: string;
+  department?: any;
+  want_department_id: string;
+  want_department?: any;
 }

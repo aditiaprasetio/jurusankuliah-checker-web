@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { apiFetchAccount } from '../../common/api/account';
-import { getHeaders } from '../../common/function';
+import { getHeaders } from '../../common/function/function';
 import {
   FETCH_ACCOUNT,
   FETCH_ACCOUNT_FAILED,
