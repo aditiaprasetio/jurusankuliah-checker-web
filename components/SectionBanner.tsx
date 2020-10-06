@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Nav from '../components/Nav';
+import Nav from './Nav';
 import { withRouter } from 'next/router';
 import { IoLogoWhatsapp, IoLogoInstagram } from 'react-icons/io';
 

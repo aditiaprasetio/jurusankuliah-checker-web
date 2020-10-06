@@ -1,0 +1,4 @@
+export const CHECK_GOOGLE_TOKEN = 'CHECK_GOOGLE_TOKEN';
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
