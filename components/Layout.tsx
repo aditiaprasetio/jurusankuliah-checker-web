@@ -1,47 +1,88 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import Head from 'next/head';
 import Nav from './Nav';
+import { connect } from 'react-redux';
+import { IAccountData } from '../interfaces/account.interface';
+import { checkLogin } from '../redux/action/auth';
+import { useRouter } from 'next/router';
 
 type Props = {
   children?: ReactNode;
   title?: string;
+  isLoggedIn: boolean;
+  account: IAccountData;
+  checkLogin: () => void;
 };
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <link rel="shortcut icon" href="/assets/favicon.png" />
-    </Head>
+const Layout = (props: Props) => {
+  const router = useRouter();
 
-    <Nav />
+  useEffect(() => {
+    props.checkLogin();
+  }, []);
 
-    <header className="bg-white shadow">
-      <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold leading-tight text-gray-900">
-          {title}
-        </h1>
-      </div>
-    </header>
+  useEffect(() => {
+    if (router.pathname === '/login') {
+      if (props.isLoggedIn) {
+        router.replace('/dashboard');
+      }
+    } else {
+      if (props.isLoggedIn === false) {
+        router.replace('/login');
+      }
+    }
+  }, [props.isLoggedIn]);
 
-    <main>
-      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        {children}
+  return (
+    <div>
+      <Head>
+        <title>{props.title}</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="shortcut icon" href="/assets/favicon.png" />
+      </Head>
 
-        {/* <!-- Replace with your content --> */}
-        <div className="px-4 py-6 sm:px-0">
-          <div className="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
+      <Nav isLoggedIn={props.isLoggedIn} account={props.account} />
+
+      <header className="bg-white shadow container mx-auto">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold leading-tight text-gray-900">
+            {props.title}
+          </h1>
         </div>
-        {/* <!-- /End replace --> */}
-      </div>
-    </main>
+      </header>
 
-    <footer className="w-full text-center text-gray-500 text-sm p-3">
-      <span>Copyright @ 2020 - Created by Pengen Kuliah</span>
-    </footer>
-  </div>
-);
+      <main className="container mx-auto shadow-md">
+        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          {props.children}
 
-export default Layout;
+          {/* <!-- Replace with your content --> */}
+          <div className="px-4 py-6 sm:px-0">
+            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
+          </div>
+          {/* <!-- /End replace --> */}
+        </div>
+      </main>
+
+      <footer className="w-full text-center text-gray-500 text-sm p-3">
+        <span>Copyright @ 2020 - Created by Pengen Kuliah</span>
+      </footer>
+    </div>
+  );
+};
+
+const mapStateToProps = (state: any) => {
+  console.info(state);
+  return {
+    isLoggedIn: state.authReducer.isLoggedIn,
+    account: state.accountReducer.data,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    checkLogin: () => dispatch(checkLogin()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

@@ -1,4 +1,4 @@
-import { CHECK_GOOGLE_TOKEN } from '../saga/auth_constant';
+import { CHECK_GOOGLE_TOKEN, CHECK_LOGIN } from '../saga/auth_types';
 
 export function checkGoogleToken(token: string) {
   return {
@@ -6,5 +6,11 @@ export function checkGoogleToken(token: string) {
     payload: {
       token,
     },
+  };
+}
+
+export function checkLogin() {
+  return {
+    type: CHECK_LOGIN,
   };
 }

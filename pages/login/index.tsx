@@ -1,15 +1,10 @@
-import Link from 'next/link';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import Layout from '../../components/Layout';
 import GoogleLogin from 'react-google-login';
-import { checkGoogleToken } from '../../redux/action/auth';
+import { checkGoogleToken, checkLogin } from '../../redux/action/auth';
 import { IAuthState } from '../../redux/reducer/auth';
 
 const Auth = (props: IAuthProps) => {
-  const router = useRouter();
-
   const responseGoogle = (response: any) => {
     if (response.error) {
       //
@@ -27,16 +22,10 @@ const Auth = (props: IAuthProps) => {
     }
   };
 
-  useEffect(() => {
-    if (props.auth.isLoggedIn) {
-      router.replace('/dashboard');
-    }
-  }, [props.auth.isLoggedIn]);
-
   return (
-    <Layout title="Login">
-      <div className="flex flex-row">
-        <div className="w-1/2 p-3">
+    <Layout title="Temukan Jurusan Yang Cocok">
+      <div className="flex flex-row flex-wrap">
+        <div className="lg:w-1/2 md:w-1/2 sm:w-full p-3">
           <h2 className="font-bold bg-pink-500 p-3 rounded-md">
             Bingung Menentukan Jurusan?
           </h2>
@@ -51,7 +40,7 @@ const Auth = (props: IAuthProps) => {
             membutuhkan bantuan dari semua pihak.
           </p>
 
-          <h2 className="font-bold bg-blue-500 p-3 rounded-md">
+          <h2 className="font-bold bg-blue-500 p-3 rounded-md mt-5">
             Behind The Scene
           </h2>
           <p className="py-2">
@@ -64,19 +53,21 @@ const Auth = (props: IAuthProps) => {
             Jadi, <b>kalau kamu sudah mahasiswa</b>, kami butuh bantuanmu untuk
             mengisi survey singkat. Apa yang akan kamu dapatkan sebagai{' '}
             <b>imbalan</b>? Kami akan menanyakan juga ke kamu apa yang kamu
-            butuhkan. Siapa tau ke depan kita bisa memberikanmu fasilitas atau
+            butuhkan. Siapa tau ke depan kami bisa memberikanmu fasilitas atau
             layanan tersebut. Sebagai gambaran, kami punya akses ke event-event
-            dari berbagai kampus, mungkin itu menarik untukmu.
+            dari berbagai kampus, mungkin itu menarik untukmu.{' '}
+            <b>Dan lebih dari itu,</b> dengan kontribusi mengisi survey singkat,
+            kamu telah membantu banyak pejuang kuliah. Itu sangat keren.
           </p>
         </div>
-        <div className="w-1/2 p-3">
+        <div className="lg:w-1/2 md:w-1/2 sm:w-full p-3 text-center">
           <h2 className="font-bold">
             Untuk memulai, silakan login terlebih dahulu
           </h2>
           <div className="py-3">
             <GoogleLogin
-              clientId="790140887499-jhtk4t91c5l76ihbc5et76adua1hro20.apps.googleusercontent.com"
-              buttonText="Login"
+              clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}
+              buttonText="Masuk dengan Google"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               cookiePolicy={'single_host_origin'}
@@ -91,6 +82,7 @@ const Auth = (props: IAuthProps) => {
 interface IAuthProps {
   auth: IAuthState;
   checkGoogleToken: (token: string) => void;
+  checkLogin: () => void;
 }
 
 const mapStateToProps = (state: any) => {
@@ -103,6 +95,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     checkGoogleToken: (token: string) => dispatch(checkGoogleToken(token)),
+    checkLogin: () => dispatch(checkLogin()),
   };
 };
 

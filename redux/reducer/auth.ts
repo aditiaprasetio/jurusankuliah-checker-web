@@ -1,8 +1,9 @@
 import {
   CHECK_GOOGLE_TOKEN,
+  CHECK_LOGIN,
   LOGIN_FAILED,
   LOGIN_SUCCESS,
-} from '../saga/auth_constant';
+} from '../saga/auth_types';
 
 export interface IAuthState {
   data: {
@@ -26,6 +27,13 @@ export default function authReducer(
 ): IAuthState {
   switch (action.type) {
     case CHECK_GOOGLE_TOKEN:
+      return {
+        ...state,
+        isFetchingLogin: true,
+        isLoggedIn: null,
+        data: {} as any,
+      };
+    case CHECK_LOGIN:
       return {
         ...state,
         isFetchingLogin: true,
