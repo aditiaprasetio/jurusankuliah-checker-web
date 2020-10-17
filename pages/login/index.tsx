@@ -66,7 +66,7 @@ const Auth = (props: IAuthProps) => {
           </h2>
           <div className="py-3">
             <svg
-              className="animate-spin h-5 w-5 mr-3 ..."
+              className="animate-spin h-5 w-5 mr-3 text-blue-600"
               viewBox="0 0 24 24"
             ></svg>
             <GoogleLogin

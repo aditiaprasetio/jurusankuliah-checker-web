@@ -16,3 +16,12 @@ export function apiCreateOneDepartment(data: any, headers: any) {
     headers,
   });
 }
+
+export function apiUpdateDepartment(id: string, data: any, headers: any) {
+  return axios({
+    url: process.env.NEXT_PUBLIC_URL_CHECKER_SERVICE + '/department/' + id,
+    method: 'PATCH',
+    data,
+    headers,
+  });
+}

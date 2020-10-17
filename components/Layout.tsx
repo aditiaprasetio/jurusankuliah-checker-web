@@ -5,12 +5,15 @@ import { connect } from 'react-redux';
 import { IAccountData } from '../interfaces/account.interface';
 import { checkLogin } from '../redux/action/auth';
 import { useRouter } from 'next/router';
+import { ICheckerProfileData } from '../interfaces/checkerProfile.interface';
 
 type Props = {
   children?: ReactNode;
   title?: string;
   isLoggedIn: boolean;
   account: IAccountData;
+  checkerProfile: ICheckerProfileData;
+  isFetchingSurvey: boolean;
   checkLogin: () => void;
 };
 
@@ -42,7 +45,12 @@ const Layout = (props: Props) => {
         <link rel="shortcut icon" href="/assets/favicon.png" />
       </Head>
 
-      <Nav isLoggedIn={props.isLoggedIn} account={props.account} />
+      <Nav
+        isLoggedIn={props.isLoggedIn}
+        account={props.account}
+        checkerProfile={props.checkerProfile}
+        isFetchingSurvey={props.isFetchingSurvey}
+      />
 
       <header className="bg-white shadow container mx-auto">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -76,6 +84,8 @@ const mapStateToProps = (state: any) => {
   return {
     isLoggedIn: state.authReducer.isLoggedIn,
     account: state.accountReducer.data,
+    checkerProfile: state.checkerProfileReducer.data,
+    isFetchingSurvey: state.surveyReducer.isFetching,
   };
 };
 
