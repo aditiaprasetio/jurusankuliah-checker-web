@@ -11,7 +11,7 @@ import {
   LOGIN_SUCCESS,
 } from './auth_types';
 
-function* checkLogin(action: any) {
+function* checkLogin() {
   try {
     let appAuthData = yield window.localStorage.getItem(APP_AUTH_DATA);
     if (appAuthData) {
@@ -41,11 +41,13 @@ function* checkGoogleToken(action: any) {
         google_token: token,
       };
 
-      yield put(fetchAccount('my'));
-
       yield window.localStorage.setItem(APP_AUTH_DATA, JSON.stringify(data));
 
-      yield put({ type: LOGIN_SUCCESS, payload: data });
+      setTimeout(() => {
+        yield put(fetchAccount('my'));
+        yield put({ type: LOGIN_SUCCESS, payload: data });
+      }, 1000);
+
     } else {
       toast.error('Login gagal!');
       console.error('error login gagal');

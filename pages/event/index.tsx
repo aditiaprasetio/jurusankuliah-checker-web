@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Layout from '../../components/Layout';
 import { fetchSurveyCompletion } from '../../redux/action/survey';

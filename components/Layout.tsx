@@ -21,7 +21,9 @@ const Layout = (props: Props) => {
   const router = useRouter();
 
   useEffect(() => {
-    props.checkLogin();
+    setTimeout(() => {
+      props.checkLogin();
+    }, 2000);
   }, []);
 
   useEffect(() => {

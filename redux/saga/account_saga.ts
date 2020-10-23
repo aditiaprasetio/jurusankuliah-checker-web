@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import { apiFetchAccount } from '../../common/api/account';
 import { getHeaders } from '../../common/function/function';
 import { handleError } from '../../common/function/handleError';

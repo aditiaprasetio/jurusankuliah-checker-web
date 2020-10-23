@@ -37,7 +37,7 @@ function* createManySubjectDetail(action: any) {
   }
 }
 
-function* fetchMyListSubjectDetail(action: any) {
+function* fetchMyListSubjectDetail() {
   let headers = yield getHeaders();
   let id = yield getAccountId();
 

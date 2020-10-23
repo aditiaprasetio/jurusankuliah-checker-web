@@ -40,7 +40,7 @@ function* createManyDeptFamilySubject(action: any) {
   }
 }
 
-function* fetchMyListDeptFamilySubject(action: any) {
+function* fetchMyListDeptFamilySubject() {
   let headers = yield getHeaders();
   let id = yield getAccountId();
 

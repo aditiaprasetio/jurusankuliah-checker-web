@@ -40,7 +40,7 @@ function* createManySubjectLike(action: any) {
   }
 }
 
-function* fetchMyListSubjectLike(action: any) {
+function* fetchMyListSubjectLike() {
   let headers = yield getHeaders();
   let id = yield getAccountId();
 

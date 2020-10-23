@@ -33,7 +33,7 @@ function* fetchOneCheckerProfile() {
       yield put({ type: FETCH_ONE_CHECKER_PROFILE_FAILED, message: 'No Data' });
     }
   } catch (e) {
-    toast.error('Gagal mengambil data profil! ' + handleError(e));
+    toast.error('Gagal mengambil data profil! Coba refresh!' + handleError(e));
     yield put({ type: FETCH_ONE_CHECKER_PROFILE_FAILED, message: e.message });
   }
 }

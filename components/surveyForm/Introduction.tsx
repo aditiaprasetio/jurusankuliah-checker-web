@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import {
   IoIosArrowDropright,
-  IoIosCheckmarkCircle,
   IoIosPerson,
   IoIosRocket,
   IoIosSchool,
