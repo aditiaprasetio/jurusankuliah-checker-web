@@ -87,6 +87,8 @@ const Dashboard = (props: IDashboardProps) => {
         return <IntroductionForm goToNext={() => setSelected(2)} />;
       } else if (selected === 2) {
         return <SubjectLike goToNext={() => setSelected(1)} />;
+      } else {
+        return <IntroductionForm goToNext={() => setSelected(2)} />;
       }
     } else if (props.survey.isPejuang === false) {
       if (selected === 1) {
@@ -99,7 +101,11 @@ const Dashboard = (props: IDashboardProps) => {
         return (
           <RelationDepartmentFamilyAndSubject goToNext={() => setSelected(1)} />
         );
+      } else {
+        return <IntroductionForm goToNext={() => setSelected(2)} />;
       }
+    } else {
+      return <IntroductionForm goToNext={() => setSelected(2)} />;
     }
   };
 
@@ -143,9 +149,10 @@ const Dashboard = (props: IDashboardProps) => {
       ) : (
         <div className="flex flex-row flex-wrap">
           <div className="flex flex-col w-full lg:w-1/3 md:w-1/3 p-3 bg-gray-200">
-            {props.survey.listSidebar.map((item: any) => {
+            {props.survey.listSidebar.map((item: any, key: number) => {
               return (
                 <div
+                  key={key}
                   onClick={() => setSelected(item.id)}
                   className={
                     'flex flex-row p-3 hover:bg-gray-400 cursor-pointer ' +

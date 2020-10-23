@@ -16,6 +16,7 @@ import {
   UPDATE_ONE_CHECKER_PROFILE,
   UPDATE_ONE_CHECKER_PROFILE_FAILED,
 } from './checkerProfile_types';
+import {fetchSurveyCompletion} from '../action/survey';
 
 function* fetchOneCheckerProfile() {
   try {
@@ -86,6 +87,8 @@ function* updateOneCheckerProfile(action: any) {
         message: 'No Data',
       });
     }
+
+    yield put(fetchSurveyCompletion());
   } catch (e) {
     toast.error('Gagal mengubah profil! ' + handleError(e));
     yield put({ type: UPDATE_ONE_CHECKER_PROFILE_FAILED, message: e.message });

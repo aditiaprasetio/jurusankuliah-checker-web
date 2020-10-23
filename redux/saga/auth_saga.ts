@@ -43,10 +43,8 @@ function* checkGoogleToken(action: any) {
 
       yield window.localStorage.setItem(APP_AUTH_DATA, JSON.stringify(data));
 
-      setTimeout(() => {
-        yield put(fetchAccount('my'));
-        yield put({ type: LOGIN_SUCCESS, payload: data });
-      }, 1000);
+      yield put(fetchAccount('my'));
+      yield put({ type: LOGIN_SUCCESS, payload: data });
 
     } else {
       toast.error('Login gagal!');

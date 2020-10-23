@@ -115,7 +115,7 @@ const DepartmentFamily = (props: IDepartmentFamilyProps) => {
   return (
     <div className="lg:w-2/3 md:w-2/3 w-full p-3">
       <div className="w-full px-8 pt-6 pb-8">
-        {props.checkerProfile.data.department.department_family ? (
+        {props.checkerProfile.data.department && props.checkerProfile.data.department.department_family ? (
           <div>
             <div>
               Jurusanmu <b>{props.checkerProfile.data.department.name}</b>,{' '}
