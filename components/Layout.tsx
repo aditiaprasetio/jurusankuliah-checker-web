@@ -80,7 +80,6 @@ const Layout = (props: Props) => {
 };
 
 const mapStateToProps = (state: any) => {
-  console.info(state);
   return {
     isLoggedIn: state.authReducer.isLoggedIn,
     account: state.accountReducer.data,

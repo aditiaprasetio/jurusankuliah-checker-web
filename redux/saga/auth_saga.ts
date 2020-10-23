@@ -1,7 +1,9 @@
+import { toast } from 'react-toastify';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { apiLoginByGoogle } from '../../common/api/auth';
 import { APP_AUTH_DATA } from '../../common/constant/auth';
 import { fetchAccount } from '../action/account';
+import { handleError } from '../../common/function/handleError';
 import {
   CHECK_GOOGLE_TOKEN,
   CHECK_LOGIN,
@@ -22,6 +24,7 @@ function* checkLogin(action: any) {
       yield put({ type: LOGIN_FAILED, message: 'Login Failed' });
     }
   } catch (e) {
+    toast.error('Login gagal! ' + handleError(e));
     yield put({ type: LOGIN_FAILED, message: e.message });
   }
 }
@@ -44,9 +47,12 @@ function* checkGoogleToken(action: any) {
 
       yield put({ type: LOGIN_SUCCESS, payload: data });
     } else {
+      toast.error('Login gagal!');
+      console.error('error login gagal');
       yield put({ type: LOGIN_FAILED, message: 'Login Failed' });
     }
   } catch (e) {
+    toast.error('Login Gagal! ' + handleError(e));
     yield put({ type: LOGIN_FAILED, message: e.message });
   }
 }

@@ -1,6 +1,8 @@
+import { toast } from 'react-toastify';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { apiFetchAccount } from '../../common/api/account';
 import { getHeaders } from '../../common/function/function';
+import { handleError } from '../../common/function/handleError';
 import {
   FETCH_ACCOUNT,
   FETCH_ACCOUNT_FAILED,
@@ -21,6 +23,7 @@ function* fetchMyAccount(action: any) {
       yield put({ type: FETCH_ACCOUNT_FAILED, message: 'No Data' });
     }
   } catch (e) {
+    toast.error('Failed to fetch account' + handleError(e));
     yield put({ type: FETCH_ACCOUNT_FAILED, message: e.message });
   }
 }

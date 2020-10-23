@@ -4,6 +4,7 @@ import { apiFetchListDeptFamilySubject } from '../../common/api/deptFamilySubjec
 import { apiFetchListSubjectDetail } from '../../common/api/subjectDetail';
 import { apiFetchListSubjectLike } from '../../common/api/subjectLike';
 import { getAccountId, getHeaders } from '../../common/function/function';
+import { handleError } from '../../common/function/handleError';
 import { ECurrentProfileStatus } from '../../interfaces/checkerProfile.interface';
 import { FETCH_ONE_CHECKER_PROFILE } from './checkerProfile_types';
 import { FETCH_MY_DEPT_FAMILY_SUBJECT } from './deptFamilySubject_types';
@@ -14,6 +15,7 @@ import {
   FETCH_SURVEY_COMPLETION_FAILED,
   FETCH_SURVEY_COMPLETION_SUCCESS,
 } from './survey_types';
+import { toast } from 'react-toastify';
 
 function* fetchSurveyCompletion() {
   try {
@@ -121,6 +123,7 @@ function* fetchSurveyCompletion() {
       payload: { listSidebar, isPejuang },
     });
   } catch (e) {
+    toast.error('Gagal menyiapkan data! ' + handleError(e));
     yield put({ type: FETCH_SURVEY_COMPLETION_FAILED, message: e.message });
   }
 }

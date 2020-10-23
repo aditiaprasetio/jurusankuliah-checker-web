@@ -1,9 +1,11 @@
+import { toast } from 'react-toastify';
 import { put, takeLatest } from 'redux-saga/effects';
 import {
   apiCreateBulkDeptFamilySubject,
   apiFetchListDeptFamilySubject,
 } from '../../common/api/deptFamilySubject';
 import { getAccountId, getHeaders } from '../../common/function/function';
+import { handleError } from '../../common/function/handleError';
 import {
   CREATE_MANY_DEPT_FAMILY_SUBJECT,
   CREATE_MANY_DEPT_FAMILY_SUBJECT_FAILED,
@@ -30,6 +32,7 @@ function* createManyDeptFamilySubject(action: any) {
       });
     }
   } catch (e) {
+    toast.error('Gagal menyimpan! ' + handleError(e));
     yield put({
       type: CREATE_MANY_DEPT_FAMILY_SUBJECT_FAILED,
       message: e.message,
@@ -62,6 +65,7 @@ function* fetchMyListDeptFamilySubject(action: any) {
       });
     }
   } catch (e) {
+    toast.error('Gagal menyimpan! ' + handleError(e));
     yield put({
       type: FETCH_MY_DEPT_FAMILY_SUBJECT_FAILED,
       message: e.message,

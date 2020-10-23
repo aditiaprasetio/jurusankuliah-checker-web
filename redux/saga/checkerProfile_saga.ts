@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { put, takeLatest } from 'redux-saga/effects';
 import {
   apiCreateOneCheckerProfile,
@@ -5,6 +6,7 @@ import {
   apiUpdateOneCheckerProfile,
 } from '../../common/api/checkerProfile';
 import { getAccountId, getHeaders } from '../../common/function/function';
+import { handleError } from '../../common/function/handleError';
 import {
   CREATE_ONE_CHECKER_PROFILE,
   CREATE_ONE_CHECKER_PROFILE_FAILED,
@@ -31,6 +33,7 @@ function* fetchOneCheckerProfile() {
       yield put({ type: FETCH_ONE_CHECKER_PROFILE_FAILED, message: 'No Data' });
     }
   } catch (e) {
+    toast.error('Gagal mengambil data profil! ' + handleError(e));
     yield put({ type: FETCH_ONE_CHECKER_PROFILE_FAILED, message: e.message });
   }
 }
@@ -57,6 +60,7 @@ function* createOneCheckerProfile(action: any) {
       });
     }
   } catch (e) {
+    toast.error('Gagal mengubah profil! ' + handleError(e));
     yield put({ type: CREATE_ONE_CHECKER_PROFILE_FAILED, message: e.message });
     yield put({ type: FETCH_ONE_CHECKER_PROFILE });
   }
@@ -83,6 +87,7 @@ function* updateOneCheckerProfile(action: any) {
       });
     }
   } catch (e) {
+    toast.error('Gagal mengubah profil! ' + handleError(e));
     yield put({ type: UPDATE_ONE_CHECKER_PROFILE_FAILED, message: e.message });
   }
 }

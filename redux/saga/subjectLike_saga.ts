@@ -4,6 +4,7 @@ import {
   apiFetchListSubjectLike,
 } from '../../common/api/subjectLike';
 import { getAccountId, getHeaders } from '../../common/function/function';
+import { handleError } from '../../common/function/handleError';
 import {
   CREATE_MANY_SUBJECT_LIKE,
   CREATE_MANY_SUBJECT_LIKE_FAILED,
@@ -11,6 +12,7 @@ import {
   FETCH_MY_SUBJECT_LIKE_FAILED,
   FETCH_MY_SUBJECT_LIKE_SUCCESS,
 } from './subjectLike_types';
+import { toast } from 'react-toastify';
 
 function* createManySubjectLike(action: any) {
   let headers = yield getHeaders();
@@ -30,6 +32,7 @@ function* createManySubjectLike(action: any) {
       });
     }
   } catch (e) {
+    toast.error('Gagal menyimpan! ' + handleError(e));
     yield put({
       type: CREATE_MANY_SUBJECT_LIKE_FAILED,
       message: e.message,
@@ -62,6 +65,7 @@ function* fetchMyListSubjectLike(action: any) {
       });
     }
   } catch (e) {
+    toast.error('Gagal mengambil data! ' + handleError(e));
     yield put({
       type: FETCH_MY_SUBJECT_LIKE_FAILED,
       message: e.message,

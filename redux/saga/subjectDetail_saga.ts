@@ -4,6 +4,7 @@ import {
   apiFetchListSubjectDetail,
 } from '../../common/api/subjectDetail';
 import { getAccountId, getHeaders } from '../../common/function/function';
+import { handleError } from '../../common/function/handleError';
 import {
   CREATE_MANY_SUBJECT_DETAIL,
   CREATE_MANY_SUBJECT_DETAIL_FAILED,
@@ -11,6 +12,7 @@ import {
   FETCH_MY_SUBJECT_DETAIL_FAILED,
   FETCH_MY_SUBJECT_DETAIL_SUCCESS,
 } from './subjectDetail_types';
+import { toast } from 'react-toastify';
 
 function* createManySubjectDetail(action: any) {
   let headers = yield getHeaders();
@@ -30,6 +32,7 @@ function* createManySubjectDetail(action: any) {
       });
     }
   } catch (e) {
+    toast.error('Gagal menyimpan! ' + handleError(e));
     yield put({ type: CREATE_MANY_SUBJECT_DETAIL_FAILED, message: e.message });
   }
 }
@@ -59,6 +62,7 @@ function* fetchMyListSubjectDetail(action: any) {
       });
     }
   } catch (e) {
+    toast.error('Gagal mengambil data mapel! ' + handleError(e));
     yield put({ type: FETCH_MY_SUBJECT_DETAIL_FAILED, message: e.message });
   }
 }

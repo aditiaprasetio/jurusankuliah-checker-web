@@ -30,14 +30,18 @@ export function handleError(err: any): string {
     } else {
       message = '(2) ' + JSON.stringify(err.response);
     }
+  } else if (err.message) {
+    message = err.message;
   } else {
     message = '(3) ' + JSON.stringify(err);
   }
 
-  if (message.includes('Bad Gateway')) {
-    message = 'Server problem';
+  if (!message) {
+    message = 'Oops. Terjadi Kesalahan! ';
+  } else if (message.includes('Bad Gateway')) {
+    message = 'Terjadi masalah di server! Silakan coba lagi';
   } else if (message.includes('Network Error')) {
-    message = 'Network Error. Please check your connection.';
+    message = 'Terjadi kesalahan pada jaringan. Coba cek koneksi internetmu.';
   } else if (message.includes('INTERNAL_SERVER_ERROR')) {
     message = 'Terjadi kesalahan. Silakan coba lagi.';
   }
